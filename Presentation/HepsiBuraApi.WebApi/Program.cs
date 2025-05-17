@@ -7,6 +7,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var environment = builder.Environment;
+
+builder.Configuration.SetBasePath(environment.ContentRootPath) //generic olarak al 
+    .AddJsonFile("appsettings.json", false)
+    .AddJsonFile($"apsettings.{environment.EnvironmentName}.json", optional: false);
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
