@@ -9,10 +9,10 @@ builder.Services.AddSwaggerGen();
 
 var environment = builder.Environment;
 
-builder.Configuration.SetBasePath(environment.ContentRootPath) //generic olarak al 
-    .AddJsonFile("appsettings.json", false)
-    .AddJsonFile($"apsettings.{environment.EnvironmentName}.json", optional: false);
-
+builder.Configuration
+    .SetBasePath(environment.ContentRootPath)
+    .AddJsonFile("appsettings.json", optional: false)
+    .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true);
 
 var app = builder.Build();
 
