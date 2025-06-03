@@ -1,7 +1,9 @@
+
 ﻿using HepsiBuraApi.Application.Interface.Repositories;
 using HepsiBuraApi.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace HepsiBuraApi.Persistence.Repositories
 {
+
     public class WriteRepository<T> : IWriteRepository<T> where T : class, IEntityBase, new()
     {
         private readonly DbContext _dbContext;
@@ -39,5 +42,5 @@ namespace HepsiBuraApi.Persistence.Repositories
         {
             await Task.Run(() => Table.Remove(entity)); // asenkron silme işlemi için Task.Run kullanıldı
         }
-    }
+
 }

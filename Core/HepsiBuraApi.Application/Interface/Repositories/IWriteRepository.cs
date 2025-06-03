@@ -1,5 +1,7 @@
+
 ﻿using HepsiBuraApi.Domain.Common;
-using System;
+﻿using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +15,5 @@ namespace HepsiBuraApi.Application.Interface.Repositories
         Task AddRangeAsync(IList<T> entities);
         Task UpdateAsync(T entity);
         Task HardDeleteAsync(T entity);
-    }
+
 }

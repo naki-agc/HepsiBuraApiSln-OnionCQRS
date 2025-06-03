@@ -9,9 +9,17 @@
     <ItemGroup>
       <PackageReference Include="Bogus" Version="35.6.3" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.20" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.20" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.20">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.5" />
+      <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Core\HepsiBuraApi.Application\HepsiBuraApi.Application.csproj" />
       <ProjectReference Include="..\..\Core\HepsiBuraApi.Domain\HepsiBuraApi.Domain.csproj" />
     </ItemGroup>
 
