@@ -31,10 +31,9 @@ namespace HepsiBuraApi.Persistence.Repositories
             await Table.AddRangeAsync(entities);
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
             await Task.Run(() => Table.Update(entity)); // asenkron güncelleme işlemi için Task.Run kullanıldı
-            return entity;
         }
 
 
@@ -42,5 +41,6 @@ namespace HepsiBuraApi.Persistence.Repositories
         {
             await Task.Run(() => Table.Remove(entity)); // asenkron silme işlemi için Task.Run kullanıldı
         }
+    }
 
 }
