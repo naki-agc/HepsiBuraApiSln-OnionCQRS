@@ -1,4 +1,5 @@
 using HepsiBuraApi.Persistence;
+using HepsiBuraApi.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Configuration
     .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true);
 
 builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddApplication(); // IServceCollection gibi çalýþýr ve Application katmanýndaki servisleri ekler.Referans vermeye gerek yoktur.
 
 var app = builder.Build();
 
