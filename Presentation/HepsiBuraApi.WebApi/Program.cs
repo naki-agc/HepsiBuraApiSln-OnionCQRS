@@ -1,5 +1,6 @@
 using HepsiBuraApi.Persistence;
 using HepsiBuraApi.Application;
+using HepsiBuraApi.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Configuration
 
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication(); // IServceCollection gibi çalýþýr ve Application katmanýndaki servisleri ekler.Referans vermeye gerek yoktur.
+builder.Services.AddCustomMapper(); // AutoMapper için gerekli olan servisleri ekler. Referans vermeye gerek yoktur.
 
 var app = builder.Build();
 
