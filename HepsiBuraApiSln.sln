@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36127.28 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{53B641C0-4D87-4E18-8049-1CC09FDCB800}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{EA5F6CCF-F44F-4F4C-838C-D4659670E226}"
@@ -15,6 +18,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{06CFFD70-14AA-A959-A3BA-1B15D094E3B1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HepsiBuraApi.WebApi", "Presentation\HepsiBuraApi.WebApi\HepsiBuraApi.WebApi.csproj", "{639CC5EE-5075-4D92-8457-95EB616027FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HepsiBuraApi.Mapper", "HepsiBuraApi.Mapper\HepsiBuraApi.Mapper.csproj", "{5BDA49DD-4553-461B-A1CC-E60446814BE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,6 +91,18 @@ Global
 		{639CC5EE-5075-4D92-8457-95EB616027FC}.Release|x64.Build.0 = Release|Any CPU
 		{639CC5EE-5075-4D92-8457-95EB616027FC}.Release|x86.ActiveCfg = Release|Any CPU
 		{639CC5EE-5075-4D92-8457-95EB616027FC}.Release|x86.Build.0 = Release|Any CPU
+		{5BDA49DD-4553-461B-A1CC-E60446814BE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BDA49DD-4553-461B-A1CC-E60446814BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BDA49DD-4553-461B-A1CC-E60446814BE8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5BDA49DD-4553-461B-A1CC-E60446814BE8}.Debug|x64.Build.0 = Debug|Any CPU
+		{5BDA49DD-4553-461B-A1CC-E60446814BE8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5BDA49DD-4553-461B-A1CC-E60446814BE8}.Debug|x86.Build.0 = Debug|Any CPU
+		{5BDA49DD-4553-461B-A1CC-E60446814BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BDA49DD-4553-461B-A1CC-E60446814BE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BDA49DD-4553-461B-A1CC-E60446814BE8}.Release|x64.ActiveCfg = Release|Any CPU
+		{5BDA49DD-4553-461B-A1CC-E60446814BE8}.Release|x64.Build.0 = Release|Any CPU
+		{5BDA49DD-4553-461B-A1CC-E60446814BE8}.Release|x86.ActiveCfg = Release|Any CPU
+		{5BDA49DD-4553-461B-A1CC-E60446814BE8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,5 +113,9 @@ Global
 		{5CAE72F1-812C-44C3-B8C0-3A8097B2A078} = {EA5F6CCF-F44F-4F4C-838C-D4659670E226}
 		{A1A123CD-2764-40F0-8ED7-EF350CA57191} = {EA5F6CCF-F44F-4F4C-838C-D4659670E226}
 		{639CC5EE-5075-4D92-8457-95EB616027FC} = {06CFFD70-14AA-A959-A3BA-1B15D094E3B1}
+		{5BDA49DD-4553-461B-A1CC-E60446814BE8} = {53B641C0-4D87-4E18-8049-1CC09FDCB800}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27875E29-E730-4B3D-AD3D-BD3112EBC66A}
 	EndGlobalSection
 EndGlobal
