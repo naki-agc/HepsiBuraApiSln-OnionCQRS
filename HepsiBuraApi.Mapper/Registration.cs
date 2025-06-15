@@ -1,7 +1,7 @@
 ﻿using AutoMapper.Configuration;
 using HepsiBuraApi.Application.Interface.AutoMapper;
 using HepsiBuraApi.Application.Interface.Repositories;
-using HepsiBuraApi.Application.Interface.UnitOfWork;
+using HepsiBuraApi.Application.Interface.UnitOfWorks;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
