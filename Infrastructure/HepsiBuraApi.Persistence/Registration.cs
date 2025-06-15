@@ -11,7 +11,7 @@ using HepsiBuraApi.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using HepsiBuraApi.Application.Interface.Repositories;
 using HepsiBuraApi.Persistence.Repositories;
-using HepsiBuraApi.Application.Interface.UnitOfWork;
+using HepsiBuraApi.Application.Interface.UnitOfWorks;
 using HepsiBuraApi.Persistence.UnitOfWorks;
 
 namespace HepsiBuraApi.Persistence

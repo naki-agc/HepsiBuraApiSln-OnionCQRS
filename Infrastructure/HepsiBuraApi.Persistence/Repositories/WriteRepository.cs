@@ -14,12 +14,14 @@ namespace HepsiBuraApi.Persistence.Repositories
 
     public class WriteRepository<T> : IWriteRepository<T> where T : class, IEntityBase, new()
     {
-        private readonly DbContext _dbContext;
+        private readonly DbContext dbContext;
+
         public WriteRepository(DbContext dbContext)
         {
-            _dbContext = dbContext;
+            this.dbContext = dbContext;
         }
-        private DbSet<T> Table { get => _dbContext.Set<T>(); }
+
+        private DbSet<T> Table { get => dbContext.Set<T>(); }
 
         public async Task AddAsync(T entity)
         {
@@ -31,15 +33,21 @@ namespace HepsiBuraApi.Persistence.Repositories
             await Table.AddRangeAsync(entities);
         }
 
-        public async Task UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
-            await Task.Run(() => Table.Update(entity)); // asenkron güncelleme işlemi için Task.Run kullanıldı
+            await Task.Run(() => Table.Update(entity));
+            return entity; // asenkron güncelleme işlemi için Task.Run kullanıldı
         }
 
 
         public async Task HardDeleteAsync(T entity)
         {
             await Task.Run(() => Table.Remove(entity)); // asenkron silme işlemi için Task.Run kullanıldı
+        }
+
+        public async Task HardDeleteRangeAsync(IList<T> entity)
+        {
+            await Task.Run(() => Table.RemoveRange(entity)); // asenkron silme işlemi için Task.Run kullanıldı
         }
     }
 

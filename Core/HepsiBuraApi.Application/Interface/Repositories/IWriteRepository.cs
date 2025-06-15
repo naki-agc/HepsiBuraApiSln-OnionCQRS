@@ -1,6 +1,7 @@
 
 ﻿using HepsiBuraApi.Domain.Common;
-﻿using System;
+using HepsiBuraApi.Domain.Entities;
+using System;
 
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,10 @@ namespace HepsiBuraApi.Application.Interface.Repositories
     {
         Task AddAsync(T entity);
         Task AddRangeAsync(IList<T> entities);
-        Task UpdateAsync(T entity);
+        Task<T> UpdateAsync(T entity);
         Task HardDeleteAsync(T entity);
+        Task HardDeleteRangeAsync(IList<T> productCategories);
+
     }
 
 }
