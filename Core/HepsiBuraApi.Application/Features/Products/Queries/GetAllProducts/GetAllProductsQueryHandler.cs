@@ -1,5 +1,5 @@
 ﻿using HepsiBuraApi.Application.Interface.AutoMapper;
-using HepsiBuraApi.Application.Interface.UnitOfWork;
+using HepsiBuraApi.Application.Interface.UnitOfWorks;
 using HepsiBuraApi.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
