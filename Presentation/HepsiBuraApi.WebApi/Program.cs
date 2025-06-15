@@ -1,6 +1,7 @@
 using HepsiBuraApi.Persistence;
 using HepsiBuraApi.Application;
 using HepsiBuraApi.Mapper;
+using HepsiBuraApi.Application.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.ConfigureExceptionHandlingMiddleware(); // Özel hata iþleme ara katmanýný ekler. Bu, uygulama genelinde hata yönetimini saðlar.
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
