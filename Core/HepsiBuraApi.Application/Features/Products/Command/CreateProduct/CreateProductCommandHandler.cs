@@ -9,23 +9,16 @@ using System.Threading.Tasks;
 
 namespace HepsiBuraApi.Application.Features.Products.Command.CreateProduct
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest, Unit>
     {
         private readonly IUnitOfWork _unitOfWork;
         public CreateProductCommandHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
-            Product product = new Product
-            (
-                request.Title,
-                request.Description,
-                request.BrandId,
-                request.Price,
-                request.Discount
-                );
+            Product product = new Product(request.Title,request.Description,request.BrandId,request.Price,request.Discount);
 
 
             await _unitOfWork.GetWriteRepository<Product>().AddAsync(product);
@@ -44,7 +37,7 @@ namespace HepsiBuraApi.Application.Features.Products.Command.CreateProduct
                 await _unitOfWork.SaveAsync();
             }
 
-
+            return Unit.Value;//Unit boş dönmemizi sağlar
         }
     }
 }
