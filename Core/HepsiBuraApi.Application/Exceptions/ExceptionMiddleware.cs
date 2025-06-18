@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using SendGrid.Helpers.Errors.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +30,15 @@ namespace HepsiBuraApi.Application.Exceptions
             httpContext.Response.ContentType = "application/json"; // Yanıt içeriği tipi JSON olarak ayarlanır
             httpContext.Response.StatusCode = statusCode; // Durum kodu ayarlanır
 
+
+            if (exception.GetType() == typeof(ValidationException))
+            {
+                return httpContext.Response.WriteAsync(new ExceptionModel
+                {
+                    Errors = ((ValidationException)exception).Errors.Select(x=> x.ErrorMessage), // ValidationException'dan gelen hatalar listeye eklenir
+                    StatusCode = StatusCodes.Status400BadRequest
+                }.ToString());
+            }
             List<string> errors = new()
             {
                 $"Hata mesajı :{exception.Message}", // Hata mesajı listeye eklenir
