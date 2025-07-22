@@ -14,7 +14,7 @@ namespace HepsiBuraApi.Application.Features.Products.Command.CreateProduct
             RuleFor(x => x.Title)
                 .NotEmpty().WithName("Başlık");
 
-            RuleFor(x => x.Description)
+            RuleFor(x => x.Description) 
                 .NotEmpty().WithName("Açıklama");
 
             RuleFor(x => x.BrandId)

@@ -42,7 +42,6 @@ namespace HepsiBuraApi.Application.Exceptions
             List<string> errors = new()
             {
                 $"Hata mesajı :{exception.Message}", // Hata mesajı listeye eklenir
-                $"Mesaj Açıklaması:{exception.InnerException?.ToString()}",// İç hata mesajı listeye eklenir (eğer varsa)
 
             };
 
