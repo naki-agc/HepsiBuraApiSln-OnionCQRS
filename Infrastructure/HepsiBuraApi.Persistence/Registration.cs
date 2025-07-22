@@ -13,6 +13,7 @@ using HepsiBuraApi.Application.Interface.Repositories;
 using HepsiBuraApi.Persistence.Repositories;
 using HepsiBuraApi.Application.Interface.UnitOfWorks;
 using HepsiBuraApi.Persistence.UnitOfWorks;
+using HepsiBuraApi.Domain.Entities;
 
 namespace HepsiBuraApi.Persistence
 {
@@ -28,6 +29,18 @@ namespace HepsiBuraApi.Persistence
             services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
             services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddIdentityCore<User>(opt =>
+            {
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequiredLength = 2;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.User.RequireUniqueEmail = false;
+            })
+                .AddRoles<Role>()
+                .AddEntityFrameworkStores<AppDbContext>();
 
         }
     }
