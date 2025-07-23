@@ -1,5 +1,6 @@
 using HepsiBuraApi.Persistence;
 using HepsiBuraApi.Application;
+using HepsiBuraApi.Infrastructure;
 using HepsiBuraApi.Mapper;
 using HepsiBuraApi.Application.Exceptions;
 
@@ -20,6 +21,7 @@ builder.Configuration
     .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true);
 
 builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication(); // IServceCollection gibi çalýþýr ve Application katmanýndaki servisleri ekler.Referans vermeye gerek yoktur.
 builder.Services.AddCustomMapper(); // AutoMapper için gerekli olan servisleri ekler. Referans vermeye gerek yoktur.
 
