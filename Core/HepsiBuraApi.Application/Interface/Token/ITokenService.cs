@@ -16,6 +16,6 @@ namespace HepsiBuraApi.Application.Interface.Token
 
         string GenerateRefreshToken(); // Yeni bir refresh token oluşturur.
 
-        ClaimsPrincipal GetPrincipalFromExpiredToken(string token);// Token'ın süresi dolmuşsa, token'dan ClaimsPrincipal oluşturur.
+        ClaimsPrincipal GetPrincipalFromExpiredToken(string? token);// Token'ın süresi dolmuşsa, token'dan ClaimsPrincipal oluşturur.
     }
 }
