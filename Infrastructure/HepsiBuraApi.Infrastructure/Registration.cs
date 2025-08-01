@@ -1,6 +1,9 @@
-﻿using HepsiBuraApi.Infrastructure.Tokens;
+﻿using HepsiBuraApi.Application.Interface.Token;
+using HepsiBuraApi.Infrastructure.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +14,31 @@ namespace HepsiBuraApi.Infrastructure
 {
     public static class Registration
     {
-        public static void AddInfrastructure(this IServiceCollection services,IConfiguration configuration)
+        public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<TokenSettings>(configuration.GetSection("JWT"));
+            services.AddTransient<ITokenService, TokenService>();
+
+
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
+            {
+                opt.SaveToken = true;
+                opt.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = false, // Geçerlilik süresini kontrol etme
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"])),
+                    ValidIssuer = configuration["JWT:Issuer"],
+                    ValidAudience = configuration["JWT:Audience"],
+                    ClockSkew = TimeSpan.Zero // Token süresi bitiminden sonra ek süre tanıma
+                };
+            });
 
             // Burada altyapı ile ilgili servisleri ekleyebilirsiniz.
             // Örneğin, veri tabanı bağlantıları, dış hizmet entegrasyonları vb.

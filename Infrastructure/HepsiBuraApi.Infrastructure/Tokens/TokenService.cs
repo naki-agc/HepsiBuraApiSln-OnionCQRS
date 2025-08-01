@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -58,12 +59,41 @@ namespace HepsiBuraApi.Infrastructure.Tokens
 
         public string GenerateRefreshToken()
         {
-            throw new NotImplementedException();
+            var randomNumber = new byte[64]; // 64 byte uzunluğunda rastgele bir dizi oluştur
+            using var rng = RandomNumberGenerator.Create(); // Kriptografik olarak güvenli bir rastgele sayı üreteci oluştur
+            rng.GetBytes(randomNumber); // Rastgele sayıları diziye ata
+            return Convert.ToBase64String(randomNumber); // Rastgele sayıları Base64 formatında stringe çevir ve döndür
+
+
+
         }
 
-        public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
+        public ClaimsPrincipal GetPrincipalFromExpiredToken(string? token)
         {
-            throw new NotImplementedException();
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = false, // Geçerlilik süresini kontrol etme
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenSettings.Secret))
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
+
+            if (securityToken is not 
+                JwtSecurityToken jwtSecurityToken ||
+                !jwtSecurityToken.Header.Alg
+                .Equals(SecurityAlgorithms.HmacSha256,
+                StringComparison.InvariantCultureIgnoreCase))
+            {
+                throw new SecurityTokenException("Invalid token");
+            }
+
+            return principal;
+
+
         }
     }
 }
