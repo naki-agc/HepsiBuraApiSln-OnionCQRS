@@ -13,6 +13,5 @@ namespace HepsiBuraApi.Application.Interface.AutoMapper
         TDestination Map<TDestination>(object source, string? ignore = null);
         IList<TDestination> Map<TDestination>(IList<object> source, string? ignore = null);
 
-
     }
 }

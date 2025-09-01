@@ -15,7 +15,6 @@ namespace HepsiBuraApi.Mapper.AutoMapper
 
             return MapperContainer.Map<TSource, TDestination>(source);
         }
-
         public IList<TDestination> Map<TDestination, TSource>(IList<TSource> source, string? ignore = null)
         {
             Config<TDestination, TSource>(5, ignore);

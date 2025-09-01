@@ -14,6 +14,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpContextAccessor(); // IHttpContextAccessor'ý DI konteynerine ekler. Bu, HTTP baðlamýna eriþim saðlar.
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); // IHttpContextAccessor'ýn tek bir örneðini oluþturur ve uygulama genelinde paylaþýr.
+
 var environment = builder.Environment;
 
 builder.Configuration

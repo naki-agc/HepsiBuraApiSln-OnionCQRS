@@ -1,7 +1,9 @@
-﻿using HepsiBuraApi.Application.Interface.AutoMapper;
+﻿using HepsiBuraApi.Application.Bases;
+using HepsiBuraApi.Application.Interface.AutoMapper;
 using HepsiBuraApi.Application.Interface.UnitOfWorks;
 using HepsiBuraApi.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +12,18 @@ using System.Threading.Tasks;
 
 namespace HepsiBuraApi.Application.Features.Products.Command.UpdateProduct
 {
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommandRequest,Unit>
+    public class UpdateProductCommandHandler : BaseHandler, IRequestHandler<UpdateProductCommandRequest, Unit>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public UpdateProductCommandHandler(IUnitOfWork unitOfWork , IMapper mapper)
+        public UpdateProductCommandHandler(IMapper mapper, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor) : base(mapper, unitOfWork, httpContextAccessor)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
         }
+
         public async Task<Unit> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
         {
-            var product = await _unitOfWork.GetReadRepository<Product>().GetAsync(x=> x.Id == request.Id && !x.IsDeleted);
+            var product = await _unitOfWork.GetReadRepository<Product>().GetAsync(x => x.Id == request.Id && !x.IsDeleted);
             var map = _mapper.Map<Product, UpdateProductCommandRequest>(request);
 
             var productCategories = await _unitOfWork.GetReadRepository<ProductCategory>().GetAllAsync(x => x.ProductId == product.Id);

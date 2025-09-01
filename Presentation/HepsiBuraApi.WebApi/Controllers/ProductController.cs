@@ -3,6 +3,7 @@ using HepsiBuraApi.Application.Features.Products.Command.DeleteProduct;
 using HepsiBuraApi.Application.Features.Products.Command.UpdateProduct;
 using HepsiBuraApi.Application.Features.Products.Queries.GetAllProducts;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
