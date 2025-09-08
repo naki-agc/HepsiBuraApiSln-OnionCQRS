@@ -17,5 +17,11 @@ namespace HepsiBuraApi.Application.Features.Auth.Command.Rules
             return Task.CompletedTask;
 
         }
+
+        public Task EmailOrPasswordShouldNotBeInvalid(User? user, bool checkPassword)
+        {
+            if (user == null || !checkPassword) throw new UserAlreadyExistException();
+            return Task.CompletedTask;
+        }
     }
 }

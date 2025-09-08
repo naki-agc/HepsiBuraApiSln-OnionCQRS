@@ -18,21 +18,20 @@ namespace HepsiBuraApi.Application.Features.Auth.Command.Register
 {
     public class RegisterCommandHandler : BaseHandler, IRequestHandler<RegisterCommandRequest, Unit>
     {
-        private readonly AuthRules authrules;
+        private readonly AuthRules authRules;
         private readonly UserManager<User> userManager;
         private readonly RoleManager<Role> roleManager;
 
-        public RegisterCommandHandler(AuthRules authRules, UserManager<User> userManager, RoleManager<Role> roleManager, IMapper mapper, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor)
-            : base(mapper, unitOfWork, httpContextAccessor)
+        public RegisterCommandHandler(AuthRules authRules, UserManager<User> userManager, RoleManager<Role> roleManager, IMapper mapper, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor) : base(mapper, unitOfWork, httpContextAccessor)
         {
-            this.authrules = authRules;
+            this.authRules = authRules;
             this.userManager = userManager;
             this.roleManager = roleManager;
         }
 
         public async Task<Unit> Handle(RegisterCommandRequest request, CancellationToken cancellationToken)
         {
-            await authrules.UserShouldNotBeExist(await userManager.FindByEmailAsync(request.Email));
+            await authRules.UserShouldNotBeExist(await userManager.FindByEmailAsync(request.Email));
             User user = _mapper.Map<User, RegisterCommandRequest>(request);
             user.UserName = request.Email;
             user.SecurityStamp = Guid.NewGuid().ToString(); // Güvenlik damgası ekleniyorÖrneğin aynı isimde mükerrer kullanıcı eklenmesin diye milisaniyelerle buna bakılıyor.

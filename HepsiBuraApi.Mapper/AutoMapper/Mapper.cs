@@ -32,33 +32,35 @@ namespace HepsiBuraApi.Mapper.AutoMapper
             Config<TDestination, IList<object>>(5, ignore);
             return (IList<TDestination>)MapperContainer.Map<IList<TDestination>>(source);
         }
-         
-        protected void Config<TDestination, TSource>(int depth = 5, string? ignore = null)
+
+//        {
+//  "fullName": "ALİ NAKİ AĞCA",
+//  "email": "nakiagca10@gmail.com",
+//  "password": "123456",
+//  "confirmPassword": "123456"
+//}
+
+        protected void Config<TDestionation, TSource>(int depth = 5, string? ignore = null)
         {
-            var typePair = new TypePair(typeof(TSource), typeof(TDestination));
-            if (typePairs.Any(x => x.SourceType == typePair.SourceType && x.DestinationType == typePair.DestinationType) && ignore == null)
-            {
+            var typePair = new TypePair(typeof(TSource), typeof(TDestionation));
+
+            if (typePairs.Any(a => a.DestinationType == typePair.DestinationType && a.SourceType == typePair.SourceType) && ignore is null)
                 return;
-            }
 
             typePairs.Add(typePair);
+
             var config = new MapperConfiguration(cfg =>
             {
                 foreach (var item in typePairs)
                 {
-                    if (ignore != null)
-                    {
+                    if (ignore is not null)
                         cfg.CreateMap(item.SourceType, item.DestinationType).MaxDepth(depth).ForMember(ignore, x => x.Ignore()).ReverseMap();
-                    }
                     else
-                    {
                         cfg.CreateMap(item.SourceType, item.DestinationType).MaxDepth(depth).ReverseMap();
-                    }
                 }
             });
 
             MapperContainer = config.CreateMapper();
-
         }
     }
 }

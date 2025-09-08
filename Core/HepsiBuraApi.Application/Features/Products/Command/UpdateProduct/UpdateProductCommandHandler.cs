@@ -24,7 +24,7 @@ namespace HepsiBuraApi.Application.Features.Products.Command.UpdateProduct
         public async Task<Unit> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
         {
             var product = await _unitOfWork.GetReadRepository<Product>().GetAsync(x => x.Id == request.Id && !x.IsDeleted);
-            var map = _mapper.Map<Product, UpdateProductCommandRequest>(request);
+            var map = _mapper.Map<Product , UpdateProductCommandRequest>(request);
 
             var productCategories = await _unitOfWork.GetReadRepository<ProductCategory>().GetAllAsync(x => x.ProductId == product.Id);
 
